@@ -19,6 +19,18 @@ The dataset contains:
 
 Thabtah, F. (2017). Autism Screening Adult [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F019.
 
+## Prerequisites
+- Install required dependencies
+```bash
+pip install -r requirements.txt
+````
+- Preprocess the dataset
+```bash
+python preprocess.py
+```
+
+The script will clean and preprocess the data, saving it as `data/cleaned_data.csv`.
+
 ## Authors
  - Davit Shadunts
  - Dhruv Srikanth 
