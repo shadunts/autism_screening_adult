@@ -1,6 +1,4 @@
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from scipy.io import arff
 
 # load the dataset
@@ -44,39 +42,10 @@ behavioral_questions = [f'Question_{i}' for i in range(1, 11)]
 for col in behavioral_questions:
     df[col] = pd.to_numeric(df[col])
 
-# visualize data
-# age distribution
-plt.figure(figsize=(8, 6))
-sns.histplot(df['age'], bins=20, kde=True)
-plt.title('Age Distribution')
-plt.xlabel('Age')
-plt.ylabel('Frequency')
-plt.show()
+# save cleaned dataset to CSV
+output_path = 'data/cleaned_data.csv'
+df.to_csv(output_path, index=False)
+print(f"Cleaned dataset saved to {output_path}")
 
-# gender distribution
-plt.figure(figsize=(8, 6))
-sns.countplot(x='gender', data=df)
-plt.title('Gender Distribution')
-plt.xlabel('Gender')
-plt.ylabel('Count')
-plt.show()
-
-# correlation heatmap
-plt.figure(figsize=(12, 8))
-numeric_df = df.select_dtypes(include=['number'])
-correlation_matrix = numeric_df.corr()
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix')
-plt.show()
-
-# pair plot for questions
-sns.pairplot(
-    df,
-    vars=behavioral_questions,
-    hue='ASD_Class',
-    diag_kind='kde',
-    corner=True,
-    height=0.9
-)
-plt.suptitle('Pair plot of Behavioral Questions', y=1.02)
-plt.show()
+# confirm dataset shape
+print(f"Dataset shape: {df.shape}")
